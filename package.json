@@ -4,9 +4,11 @@
   "version": "0.0.1",
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
+    "build": "node -e \"console.log('BUILD_START', Date.now())\" && astro build && node -e \"console.log('BUILD_END', Date.now())\"",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "prebuild": "node scripts/gen-pages.mjs",
+    "bench": "npm ci --no-audit --fund=false && npm run build"
   },
   "dependencies": {
     "astro": "^5.13.7"
