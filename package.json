@@ -7,7 +7,8 @@
     "build": "node -e \"console.log('BUILD_START', Date.now())\" && astro build && node -e \"console.log('BUILD_END', Date.now())\"",
     "preview": "astro preview",
     "astro": "astro",
-    "prebuild": "node scripts/gen-pages.mjs",
+    "check:heap": "node -e \"const v8=require('v8'); console.log('execArgv', process.execArgv); console.log('NODE_OPTIONS', process.env.NODE_OPTIONS||''); console.log('heap limit', v8.getHeapStatistics().heap_size_limit/1024/1024,'MB');\"",
+    "prebuild": "npm run check:heap && node scripts/gen-pages.mjs",
     "bench": "npm ci --no-audit --fund=false && npm run build"
   },
   "dependencies": {
