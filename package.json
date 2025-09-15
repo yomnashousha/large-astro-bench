@@ -4,7 +4,7 @@
   "version": "0.0.1",
   "scripts": {
     "dev": "astro dev",
-    "build": "node -e \"console.log('BUILD_START', Date.now())\" && astro build && node -e \"console.log('BUILD_END', Date.now())\"",
+    "build": "node -e \"const os=require('os'); console.log('BUILD_START', Date.now(), 'vCPUs:', os.cpus().length)\" && astro build && node -e \"const os=require('os'); console.log('BUILD_END', Date.now(), 'vCPUs:', os.cpus().length)\"",
     "preview": "astro preview",
     "astro": "astro",
     "check:heap": "node -e \"const v8=require('v8'); console.log('execArgv', process.execArgv); console.log('NODE_OPTIONS', process.env.NODE_OPTIONS||''); console.log('heap limit', v8.getHeapStatistics().heap_size_limit/1024/1024,'MB');\"",
